@@ -39,8 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (currentState == EnemyState.Chase)
-            _movement.MoveToTarget(_baseTowerTarget);
+        if (currentState == EnemyState.Chase) _movement.MoveToTarget(_baseTowerTarget);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
