@@ -2,14 +2,23 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
+    [Header("Tower Data")]
     public TowerDefinition towerData;
     public int currentLevel = 0;
     public LevelStats stats;
 
+    [Header("References")]
+    public Building building;
+    public GameObject canvasUpgradeOption;
+
+    public bool isPlaced = false;
+
+
     public void Start()
     {
+        building.OnBuildingPlace += OnPlace;
         // Set Level 1 Stats
-        UpgradeTower();
+        Upgrade();
     }
 
     // For testing only
@@ -17,11 +26,20 @@ public abstract class Tower : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            UpgradeTower();
+            Upgrade();
         }
     }
 
-    public void UpgradeTower()
+
+    public void OpenUpgradePanel(bool setActive)
+    {
+        if (!isPlaced)
+            return;
+
+        canvasUpgradeOption.SetActive(setActive);
+    }
+
+    public void Upgrade()
     {
         currentLevel++;
         if (currentLevel <= towerData.maxLevel)
@@ -32,6 +50,11 @@ public abstract class Tower : MonoBehaviour
         {
             currentLevel = towerData.maxLevel;
         }
+    }
+
+    public void OnPlace()
+    {
+        isPlaced = true;
     }
 
 }
