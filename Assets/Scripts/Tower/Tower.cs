@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public abstract class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour, IUpgradable
 {
     [Header("Tower Data")]
     public TowerDefinition towerData;
@@ -11,7 +12,8 @@ public abstract class Tower : MonoBehaviour
     public Building building;
     public GameObject canvasUpgradeOption;
 
-    public bool isPlaced = false;
+    [HideInInspector] public bool isPlaced = false;
+    public event Action OnUpgrade;
 
 
     public void Start()
@@ -19,15 +21,6 @@ public abstract class Tower : MonoBehaviour
         building.OnBuildingPlace += OnPlace;
         // Set Level 1 Stats
         Upgrade();
-    }
-
-    // For testing only
-    public virtual void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Upgrade();
-        //}
     }
 
 
@@ -45,6 +38,7 @@ public abstract class Tower : MonoBehaviour
         if (currentLevel <= towerData.maxLevel)
         {
             stats = towerData.GetStats(currentLevel);
+            OnUpgrade?.Invoke();
         }
         else
         {
