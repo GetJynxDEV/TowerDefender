@@ -184,7 +184,7 @@ MonoBehaviour:
     m_Flags: 0
   buildingLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   cam: {fileID: 1265467140}
 --- !u!4 &113357896
 Transform:
@@ -264,7 +264,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2088874793
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -355,7 +355,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 367827287
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575230551}
   - component: {fileID: 575230550}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Buildable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 367827287
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -832,7 +832,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 367827287
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -1060,7 +1060,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 367827287
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -1098,7 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1692263237}
   - component: {fileID: 1692263236}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Buildable (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1445,10 +1445,10 @@ MonoBehaviour:
     m_Flags: 0
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   buildingLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   validColor: {r: 0.5137255, g: 0.6127028, b: 1, a: 1}
   invalidColor: {r: 1, g: 0.36726102, b: 0.3537736, a: 1}
 --- !u!4 &2129659100
