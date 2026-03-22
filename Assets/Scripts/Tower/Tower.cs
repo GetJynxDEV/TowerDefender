@@ -24,10 +24,10 @@ public abstract class Tower : MonoBehaviour
     // For testing only
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Upgrade();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Upgrade();
+        //}
     }
 
 
