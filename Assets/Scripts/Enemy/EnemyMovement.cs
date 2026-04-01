@@ -1,33 +1,32 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent _agent;
+    public Transform[] waypoints;
+    public float speed = 2f;
+    private int currentIndex = 0;
 
-    private void Awake()
+    private void Update()
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
-    }
+        if (waypoints == null || waypoints.Length == 0) return;
 
-    public void MoveToTarget(Transform target)
-    {
-        if (target == null) return;
-        _agent.isStopped = false;
-        _agent.SetDestination(target.position);
+        Transform target = waypoints[currentIndex];
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, target.position) < 0.05f)
+        {
+            currentIndex++;
+            if (currentIndex >= waypoints.Length) currentIndex = waypoints.Length - 1;
+        }
     }
 
     public void StopMoving()
     {
-        _agent.isStopped = true;
-        _agent.ResetPath();
+        enabled = false;
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float newSpeed)
     {
-        _agent.speed = speed;
+        speed = newSpeed;
     }
 }
