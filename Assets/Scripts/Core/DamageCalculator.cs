@@ -1,18 +1,36 @@
 using UnityEngine;
 
-public class DamageCalculator : MonoBehaviour
+public static class DamageCalculator 
 {
-    float finalDamageValue;
-
-    public float PhysicalDamage(float defenderArmor, float attackerDamage)
+    //Fire => Earth
+    //Earth => Air
+    //Air => Lightning
+    //Lightning => Water
+    //Water => Fire
+    public static int ElementalDamage(Element defenderElement, Element attackerElement, float attackerDamage)
     {
-        finalDamageValue = attackerDamage - defenderArmor;
+        float finalDamageValue = attackerDamage;
 
-        if (finalDamageValue < 0)
+        if (defenderElement == Element.None || attackerElement == Element.None)
+            return Mathf.RoundToInt(finalDamageValue);
+
+        if (defenderElement == attackerElement)
         {
-            finalDamageValue = 1;
+            finalDamageValue *= 0.5f; // Same element, reduced damage
+        }
+        else if ((attackerElement == Element.Fire && defenderElement == Element.Earth) ||
+                 (attackerElement == Element.Earth && defenderElement == Element.Air) ||
+                 (attackerElement == Element.Air && defenderElement == Element.Lightning) ||
+                 (attackerElement == Element.Lightning && defenderElement == Element.Water) ||
+                 (attackerElement == Element.Water && defenderElement == Element.Fire))
+        {
+            finalDamageValue *= 1.5f; // Strong against, increased damage
+        }
+        else
+        {
+            finalDamageValue *= 0.75f; // Weak against, reduced damage
         }
 
-        return finalDamageValue;
+        return Mathf.RoundToInt(finalDamageValue);
     }
 }
