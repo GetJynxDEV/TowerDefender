@@ -11,7 +11,7 @@ public class EnemyPool : MonoBehaviour
 
     public bool CanSpawn => _activeCount < _maxActive;
 
-    public GameObject Get(Vector3 position)
+    public GameObject Get(Vector3 position, Transform[] waypoints)
     {
         if (!CanSpawn) return null;
 
@@ -23,14 +23,12 @@ public class EnemyPool : MonoBehaviour
         }
         else
         {
-            _enemyPrefab.SetActive(false);
             enemy = Instantiate(_enemyPrefab, transform);
-            _enemyPrefab.SetActive(true);
         }
 
         enemy.transform.position = position;
         enemy.SetActive(true);
-        enemy.GetComponent<EnemyAI>().Init();
+        enemy.GetComponent<Enemy>().Init(waypoints);
         _activeCount++;
         return enemy;
     }
