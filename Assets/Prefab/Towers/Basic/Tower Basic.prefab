@@ -152,6 +152,88 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2803010336795621025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6877088329502062017}
+  - component: {fileID: 124176618150621787}
+  - component: {fileID: 8255528816290439428}
+  m_Layer: 7
+  m_Name: Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6877088329502062017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803010336795621025}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7526058278065579954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &124176618150621787
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803010336795621025}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 3
+--- !u!114 &8255528816290439428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803010336795621025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75458a0b4d149754e8d31228943e4cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Detector
+  enemyInRange: []
 --- !u!1 &4448868943115172389
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,9 +323,11 @@ GameObject:
   - component: {fileID: 7526058278065579954}
   - component: {fileID: 473351683125829914}
   - component: {fileID: 7632341381800885684}
+  - component: {fileID: 2165073544605690694}
   - component: {fileID: 7673365425869151802}
   - component: {fileID: 4248830059391896416}
   - component: {fileID: 5303012311376400606}
+  - component: {fileID: 7917880379732357446}
   m_Layer: 7
   m_Name: Tower Basic
   m_TagString: Untagged
@@ -267,6 +351,7 @@ Transform:
   - {fileID: 6575080898157579460}
   - {fileID: 6156790750663189335}
   - {fileID: 3541183825240469516}
+  - {fileID: 6877088329502062017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &473351683125829914
@@ -342,14 +427,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tower_SingleTarget
   towerData: {fileID: 11400000, guid: f591942e53171294dac4ca26ea94966c, type: 2}
   currentLevel: 0
-  stats:
-    damage: 0
-    attackSpeed: 0
-    critChance: 0
-    critDamage: 0
   building: {fileID: 5303012311376400606}
   canvasUpgradeOption: {fileID: 9206300330920456331}
   isPlaced: 0
+  _rangeAttack: {fileID: 2165073544605690694}
+  _detector: {fileID: 8255528816290439428}
+--- !u!114 &2165073544605690694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6146188468239434443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94fb976e38cfea4bb9251dfed1232b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeAttack
+  _projectilePrefab: {fileID: 7132174799696122355, guid: 818c5793dcd64d849aeb0700d2947456, type: 3}
+  _firePoint: {fileID: 7526058278065579954}
 --- !u!61 &7673365425869151802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -437,6 +533,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Building
   spriteRenderer: {fileID: 473351683125829914}
   boxCollider: {fileID: 7673365425869151802}
+--- !u!114 &7917880379732357446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6146188468239434443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6af4aa4353b6643b8eddde50d86372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectHandler
 --- !u!1 &7455318059776452983
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class TE_CritChanceBuff : MonoBehaviour
+public class TE_CritChanceBuff : TowerEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float _add;
+
+    public TE_CritChanceBuff(float add)
     {
-        
+        _add = add;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void Apply(TowerStats stats) => stats.critChance += _add;
+
+    public override void Remove(TowerStats stats) => stats.critChance -= _add;
 }

@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class TE_DamageBuff : MonoBehaviour
+public class TE_DamageBuff : TowerEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float _multiplier;
+
+    public TE_DamageBuff(float multiplier)
     {
-        
+        _multiplier = multiplier;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void Apply(TowerStats stats) => stats.damage = Mathf.RoundToInt(stats.damage * _multiplier);
+
+    public override void Remove(TowerStats stats) => stats.damage = Mathf.RoundToInt(stats.damage / _multiplier);
 }

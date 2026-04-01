@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class TE_AttackSpeedBuff : MonoBehaviour
+public class TE_AttackSpeedBuff : TowerEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float _multiplier;
+
+    public TE_AttackSpeedBuff(float multiplier)
     {
-        
+        _multiplier = multiplier;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void Apply(TowerStats stats) => stats.attackSpeed *= _multiplier;
+
+    public override void Remove(TowerStats stats) => stats.attackSpeed /= _multiplier;
 }

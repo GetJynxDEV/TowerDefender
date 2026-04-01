@@ -6,7 +6,7 @@ public abstract class Tower : MonoBehaviour, IUpgradable
     [Header("Tower Data")]
     public TowerDefinition towerData;
     public int currentLevel = 0;
-    public LevelStats stats;
+    public TowerStats stats;
 
     [Header("References")]
     public Building building;
@@ -37,7 +37,8 @@ public abstract class Tower : MonoBehaviour, IUpgradable
         currentLevel++;
         if (currentLevel <= towerData.maxLevel)
         {
-            stats = towerData.GetStats(currentLevel);
+            // Rebuild runtime stats and reapply any active buffs
+            GetComponent<EffectHandler>().ReapplyAll(towerData.GetStats(currentLevel));
             OnUpgrade?.Invoke();
         }
         else
@@ -51,4 +52,21 @@ public abstract class Tower : MonoBehaviour, IUpgradable
         isPlaced = true;
     }
 
+}
+
+[System.Serializable]
+public class TowerStats
+{
+    public int damage;
+    public float attackSpeed;
+    public float critChance;
+    public float critDamage;
+
+    public TowerStats(LevelStats baseStats)
+    {
+        damage = baseStats.damage;
+        attackSpeed = baseStats.attackSpeed;
+        critChance = baseStats.critChance;
+        critDamage = baseStats.critDamage;
+    }
 }
