@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+[CreateAssetMenu(fileName = "EnemyStats", menuName = "Enemy/EnemyStats"]
+public class EnemyStats : ScriptableObject
 {
     public int health;
     public int damage;
