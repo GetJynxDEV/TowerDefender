@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Prj_Pierce : MonoBehaviour
+public class Prj_Pierce : Projectile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.TryGetComponent(out IDamageable damageable))
+            damageable.TakeDamage(damage, element);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Does not return to pool allowing it to pierce through enemies.
+        // Only returns to pool after lifetime expires
     }
 }

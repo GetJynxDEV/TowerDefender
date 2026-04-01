@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class Prj_Basic : MonoBehaviour
+public class Prj_Basic : Projectile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.TryGetComponent(out IDamageable damageable))
+            damageable.TakeDamage(damage, element);
+            ReturnToPool();
     }
 }

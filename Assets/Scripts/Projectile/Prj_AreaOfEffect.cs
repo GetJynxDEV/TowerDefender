@@ -1,16 +1,48 @@
+using System.Collections;
 using UnityEngine;
 
-public class Prj_AreaOfEffect : MonoBehaviour
+public class Prj_AreaOfEffect : Projectile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("AoE Settings")]
+    [SerializeField] private float maxRadius = 2f;
+    [SerializeField] private float aoeSpreadSpeed = 5f;
+    private CircleCollider2D aoeCollider;
+    private float baseRadius;
+
+    public override void Start()
     {
-        
+        base.Start();
+        aoeCollider = GetComponent<CircleCollider2D>();
+        baseRadius = aoeCollider.radius;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.TryGetComponent(out IDamageable damageable))
+            damageable.TakeDamage(damage, element);
+            StartCoroutine(TriggerAoEEffect());
+    }
+
+    IEnumerator TriggerAoEEffect()
+    {
+        rb.linearVelocity = Vector2.zero;
+        float elapsed = 0f;
+        float spreadDuration = maxRadius / aoeSpreadSpeed;
+
+        while (elapsed < spreadDuration)
+        {
+            aoeCollider.radius = Mathf.Lerp(baseRadius, maxRadius, elapsed / spreadDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        aoeCollider.radius = maxRadius;
+        ReturnToPool();
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        aoeCollider.radius = baseRadius;
     }
 }
