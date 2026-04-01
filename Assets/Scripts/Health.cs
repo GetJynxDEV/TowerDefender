@@ -28,7 +28,7 @@ public class Health : MonoBehaviour, IDamageable
     // Damage with element consideration
     public void TakeDamage(int damage, Element attackerElement)
     {
-        ApplyDamage(damage);
+        ApplyDamage(DamageCalculator.ElementalDamage(elementType, attackerElement, damage));
     }
 
     private void ApplyDamage(int damage)
