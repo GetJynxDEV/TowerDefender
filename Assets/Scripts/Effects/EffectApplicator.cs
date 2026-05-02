@@ -10,41 +10,33 @@ public class EffectApplicator : MonoBehaviour
     [SerializeField] private float _effectDuration;
     [SerializeField] private List<Tower> _allTowers = new List<Tower>();
 
-    private Dictionary<Tower, Coroutine> _activeCoroutines = new();
+    private Dictionary<Tower, (Coroutine coroutine, TowerEffect effect)> _activeEffects = new();
 
     public void ApplyEffect()
     {
         foreach (Tower tower in _allTowers)
         {
             EffectHandler handler = tower.GetComponent<EffectHandler>();
-            TowerEffect effect = CreateEffect();
+            TowerEffect newEffect = CreateEffect();
 
-            if (_activeCoroutines.TryGetValue(tower, out Coroutine existing))
+            if (_activeEffects.TryGetValue(tower, out var existing))
             {
-                StopCoroutine(existing);
-                _activeCoroutines[tower] = StartCoroutine(EffectTimer(handler, effect, _effectDuration));
+                // Stop old timer, remove old effect from stats, then apply new one
+                StopCoroutine(existing.coroutine);
+                handler.RemoveEffect(existing.effect);
             }
-            else
-            {
-                handler.AddEffect(effect);
-                _activeCoroutines[tower] = StartCoroutine(EffectTimer(handler, effect, _effectDuration));
-            }
+
+            handler.AddEffect(newEffect);
+            Coroutine coroutine = StartCoroutine(EffectTimer(tower, handler, newEffect, _effectDuration));
+            _activeEffects[tower] = (coroutine, newEffect);
         }
     }
 
-    private IEnumerator EffectTimer(EffectHandler handler, TowerEffect effect, float duration)
+    private IEnumerator EffectTimer(Tower tower, EffectHandler handler, TowerEffect effect, float duration)
     {
         yield return new WaitForSeconds(duration);
         handler.RemoveEffect(effect);
-        // Clean up the entry after expiry
-        foreach (var key in _activeCoroutines.Keys)
-        {
-            if (_activeCoroutines[key] == null)
-            {
-                _activeCoroutines.Remove(key);
-                break;
-            }
-        }
+        _activeEffects.Remove(tower);
     }
 
     private TowerEffect CreateEffect() => _effectToApply switch

@@ -16,22 +16,22 @@ MonoBehaviour:
   cost: 64000000320000006400000096000000c8000000
   statsPerLevel:
   - damage: 5
-    attackSpeed: 1.2
+    attackSpeed: 0.5
     critChance: 10
     critDamage: 50
   - damage: 7
-    attackSpeed: 1
+    attackSpeed: 0.5
     critChance: 20
     critDamage: 70
   - damage: 9
-    attackSpeed: 1.2
+    attackSpeed: 0.5
     critChance: 30
     critDamage: 90
   - damage: 11
-    attackSpeed: 1.4
+    attackSpeed: 0.5
     critChance: 40
     critDamage: 110
   - damage: 13
-    attackSpeed: 1.6
+    attackSpeed: 0.5
     critChance: 50
     critDamage: 130
