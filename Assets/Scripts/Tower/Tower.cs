@@ -50,6 +50,7 @@ public abstract class Tower : MonoBehaviour, IUpgradable
     public void OnPlace()
     {
         isPlaced = true;
+        TowersInScene.Instance.towers.Add(this);
     }
 
 }

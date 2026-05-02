@@ -47,7 +47,8 @@ public class UITowerManager : MonoBehaviour
 
     public void DestroyTower()
     {
-        Destroy( _tower.gameObject);
+        TowersInScene.Instance.towers.Remove(_tower);
+        Destroy(_tower.gameObject);
     }
 
     void SetCanvasPosition()

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 // As a Button's OnClick Event
 public class EffectApplicator : MonoBehaviour
@@ -8,20 +9,21 @@ public class EffectApplicator : MonoBehaviour
     [SerializeField] private EffectToApply _effectToApply;
     [SerializeField] private float _effectMagnitude;
     [SerializeField] private float _effectDuration;
-    [SerializeField] private List<Tower> _allTowers = new List<Tower>();
+    [SerializeField] private Button _button;
 
     private Dictionary<Tower, (Coroutine coroutine, TowerEffect effect)> _activeEffects = new();
 
     public void ApplyEffect()
     {
-        foreach (Tower tower in _allTowers)
+        _button.interactable = false;
+
+        foreach (Tower tower in TowersInScene.Instance.towers)
         {
             EffectHandler handler = tower.GetComponent<EffectHandler>();
             TowerEffect newEffect = CreateEffect();
 
             if (_activeEffects.TryGetValue(tower, out var existing))
             {
-                // Stop old timer, remove old effect from stats, then apply new one
                 StopCoroutine(existing.coroutine);
                 handler.RemoveEffect(existing.effect);
             }
@@ -37,6 +39,9 @@ public class EffectApplicator : MonoBehaviour
         yield return new WaitForSeconds(duration);
         handler.RemoveEffect(effect);
         _activeEffects.Remove(tower);
+
+        if (_activeEffects.Count == 0)
+            _button.interactable = true;
     }
 
     private TowerEffect CreateEffect() => _effectToApply switch
