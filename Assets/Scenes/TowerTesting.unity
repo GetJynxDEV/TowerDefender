@@ -219,6 +219,7 @@ MonoBehaviour:
   _effectToApply: 1
   _effectMagnitude: 5
   _effectDuration: 3
+  _button: {fileID: 86648399}
 --- !u!114 &86648399
 MonoBehaviour:
   m_ObjectHideFlags: 0
