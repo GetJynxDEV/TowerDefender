@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e8c349500bb7814b8f9ad12c4ffc310, type: 3}
-  m_Name: Tower_Basic
+  m_Name: Tower_Basic_Air
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefinition
   maxLevel: 5
   cost: 64000000320000006400000096000000c8000000
@@ -24,14 +24,14 @@ MonoBehaviour:
     critChance: 20
     critDamage: 70
   - damage: 9
-    attackSpeed: 0.8
+    attackSpeed: 1.2
     critChance: 30
     critDamage: 90
   - damage: 11
-    attackSpeed: 0.6
+    attackSpeed: 1.4
     critChance: 40
     critDamage: 110
   - damage: 13
-    attackSpeed: 0.4
+    attackSpeed: 1.6
     critChance: 50
     critDamage: 130

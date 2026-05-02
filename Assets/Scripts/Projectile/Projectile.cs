@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -22,7 +23,13 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnEnable()
     {
-        Invoke(nameof(ReturnToPool), lifetime);
+        StartCoroutine(LifetimeCoroutine());
+    }
+
+    private IEnumerator LifetimeCoroutine()
+    {
+        yield return new WaitForSeconds(lifetime);
+        ReturnToPool();
     }
 
     public virtual void SetDirection(Vector2 direction)
@@ -32,6 +39,8 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnDisable()
     {
+        // StopAllCoroutines is called automatically on disable,
+        // so LifetimeCoroutine is always cleaned up when pooled.
         rb.linearVelocity = Vector2.zero;
     }
 

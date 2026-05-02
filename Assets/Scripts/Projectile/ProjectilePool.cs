@@ -28,6 +28,8 @@ public class ProjectilePool : MonoBehaviour
 
     public void Return(GameObject projectileObj)
     {
+        if (!projectileObj.activeSelf) return; // already returned, ignore
+
         int id = projectileObj.GetComponent<Projectile>().poolID;
         projectileObj.SetActive(false);
         projectileObj.transform.SetParent(transform);

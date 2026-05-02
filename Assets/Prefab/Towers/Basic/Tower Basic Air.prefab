@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6156790750663189335}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Left Pos
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7623452503043536154}
   - component: {fileID: 3260129489530535039}
   - component: {fileID: 5174298731645542542}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Btn Destroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 6877088329502062017}
   - component: {fileID: 124176618150621787}
   - component: {fileID: 8255528816290439428}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 6722774121740606841}
   - component: {fileID: 3895648196693061392}
   - component: {fileID: 2886109474119268203}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5303012311376400606}
   - component: {fileID: 7917880379732357446}
   m_Layer: 7
-  m_Name: Tower Basic
+  m_Name: Tower Basic Air
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,8 +425,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542f50a33b2f8cb448f62da73d5d7106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_SingleTarget
-  towerData: {fileID: 11400000, guid: f591942e53171294dac4ca26ea94966c, type: 2}
+  towerData: {fileID: 11400000, guid: 846d0085191cecf47883db75e3872754, type: 2}
   currentLevel: 0
+  stats:
+    damage: 0
+    attackSpeed: 0
+    critChance: 0
+    critDamage: 0
   building: {fileID: 5303012311376400606}
   canvasUpgradeOption: {fileID: 9206300330920456331}
   isPlaced: 0
@@ -444,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94fb976e38cfea4bb9251dfed1232b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeAttack
-  _projectilePrefab: {fileID: 7132174799696122355, guid: 818c5793dcd64d849aeb0700d2947456, type: 3}
+  _projectilePrefab: {fileID: 7132174799696122355, guid: 186fe85e720c09145a146b443597cf9b, type: 3}
   _firePoint: {fileID: 7526058278065579954}
 --- !u!61 &7673365425869151802
 BoxCollider2D:
@@ -545,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6af4aa4353b6643b8eddde50d86372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectHandler
+  _activeEffects: []
 --- !u!1 &7455318059776452983
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +562,7 @@ GameObject:
   - component: {fileID: 1492745947049730796}
   - component: {fileID: 8830027523514129672}
   - component: {fileID: 7604013530581890842}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +699,7 @@ GameObject:
   - component: {fileID: 6495055833741422874}
   - component: {fileID: 4241209230011421486}
   - component: {fileID: 2776214687350933991}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6575080898157579460}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Right Pos
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -861,7 +867,7 @@ GameObject:
   - component: {fileID: 5415155916588637863}
   - component: {fileID: 218214729340720100}
   - component: {fileID: 1999249199315049659}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +1005,7 @@ GameObject:
   - component: {fileID: 4108107455350179511}
   - component: {fileID: 4238328847997799752}
   - component: {fileID: 2049177055774044971}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Btn Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1121,7 +1127,7 @@ GameObject:
   - component: {fileID: 56177447897171027}
   - component: {fileID: 53889542211877216}
   - component: {fileID: 695245574424398626}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

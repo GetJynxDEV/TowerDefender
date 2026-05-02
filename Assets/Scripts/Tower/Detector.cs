@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Make a sphere collider as trigger and put as a child object.
 public class Detector : MonoBehaviour
 {
     public List<Enemy> enemyInRange = new List<Enemy>();
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Enemy enemy))
             enemyInRange.Add(enemy);
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out Enemy enemy))
             enemyInRange.Remove(enemy);
@@ -25,10 +24,7 @@ public class Detector : MonoBehaviour
 
     void SortEnemy()
     {
-        // Remove disabled enemies
         enemyInRange.RemoveAll(enemy => enemy == null || !enemy.enabled || !enemy.gameObject.activeInHierarchy);
-
-        // Sort by 2D distance
         enemyInRange.Sort((a, b) =>
         {
             float distA = Vector2.Distance(transform.position, a.transform.position);

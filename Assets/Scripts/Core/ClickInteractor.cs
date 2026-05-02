@@ -39,21 +39,15 @@ public class ClickInteractor : MonoBehaviour
         Vector2 worldPos = cam.ScreenToWorldPoint(screenPos);
         Collider2D hit = Physics2D.OverlapPoint(worldPos, buildingLayer);
 
-        if (hit != null)
-        {
-            if (_tower != null)
-                _tower.OpenUpgradePanel(false);
+        if (_tower != null)
+            _tower.OpenUpgradePanel(false);
 
-            _tower = hit.GetComponent<Tower>();
+        _tower = null;
+
+        if (hit != null && hit.TryGetComponent(out Tower tower))
+        {
+            _tower = tower;
             _tower.OpenUpgradePanel(true);
-
-        }
-        else
-        {
-            if (_tower != null)
-                _tower.OpenUpgradePanel(false);
-
-            _tower = null;
         }
     }
 }
