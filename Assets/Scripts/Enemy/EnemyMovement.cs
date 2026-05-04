@@ -25,6 +25,12 @@ public class EnemyMovement : MonoBehaviour
         enabled = false;
     }
 
+    public void ResetMovement()
+    {
+        currentIndex = 0;
+        enabled = true;
+    }
+
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;

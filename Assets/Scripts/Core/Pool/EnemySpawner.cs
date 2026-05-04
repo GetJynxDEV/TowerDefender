@@ -30,11 +30,11 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < wave.enemyCount; i++)
             {
                 yield return new WaitUntil(() => _enemyPool.CanSpawn);
-
                 _enemyPool.Get(_spawnPoint.position, _pathWaypoints);
-
                 yield return new WaitForSeconds(wave.timeBetweenSpawns);
             }
+
+            yield return new WaitUntil(() => _enemyPool.AllCleared);
 
             _currentWave++;
 

@@ -30,11 +30,21 @@ public abstract class Enemy : MonoBehaviour
         if (movement == null) return;
 
         currentState = EnemyState.Chase;
+        movement.ResetMovement();
         movement.SetSpeed(movementSpeed);
         movement.waypoints = waypoints;
+        health?.ResetHealth();
+        AssignRandomElement();
     }
 
     public abstract void Attack();
+
+    private void AssignRandomElement()
+    {
+        if (health == null) return;
+        Element[] elements = (Element[])System.Enum.GetValues(typeof(Element));
+        health.elementType = elements[Random.Range(0, elements.Length)];
+    }
 
     protected void TriggerDeath()
     {

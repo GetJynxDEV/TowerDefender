@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Element elementType = Element.None;
+    public Element elementType = Element.None;
     public Element element => elementType;
 
     public int maxHealth;
@@ -15,17 +15,20 @@ public class Health : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        ResetHealth();
+    }
+
+    public void ResetHealth()
+    {
         currentHealth = maxHealth;
         isDead = false;
     }
 
-    // Basic Damage without element consideration
     public void TakeDamage(int damage)
     {
         ApplyDamage(damage);
     }
 
-    // Damage with element consideration
     public void TakeDamage(int damage, Element attackerElement)
     {
         ApplyDamage(DamageCalculator.ElementalDamage(elementType, attackerElement, damage));
