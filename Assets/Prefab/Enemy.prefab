@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3070665789577174677}
   - component: {fileID: 514167179053143251}
   - component: {fileID: 5376693617706649757}
+  - component: {fileID: 784506140955351035}
   - component: {fileID: 8951082437098466327}
   - component: {fileID: 4333835707853289234}
   m_Layer: 6
@@ -82,6 +83,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   waypoints: []
   speed: 2
+--- !u!114 &784506140955351035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260105388970442485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e49c62e75617944b1882357cbc2b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageFlash
+  _spriteRenderer: {fileID: 1426306896644431763}
+  _flashDuration: 0.1
+  _flashColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!70 &8951082437098466327
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
