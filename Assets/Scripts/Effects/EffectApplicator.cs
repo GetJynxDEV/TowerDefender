@@ -12,13 +12,21 @@ public class EffectApplicator : MonoBehaviour
     [SerializeField] private float _cooldownDuration;
     [SerializeField] private Button _button;
     [SerializeField] private TextMeshProUGUI _cooldownText;
+    [SerializeField] private Color _activeEffectColor = Color.green; // Set in Inspector
 
     private Dictionary<Tower, (Coroutine coroutine, TowerEffect effect)> _activeEffects = new();
     private Coroutine _cooldownCoroutine;
+    private Color _defaultColor;
+
+    private void Start()
+    {
+        _defaultColor = _button.image.color;
+    }
 
     public void ApplyEffect()
     {
         _button.interactable = false;
+        _button.image.color = _activeEffectColor;
 
         if (_cooldownCoroutine != null)
             StopCoroutine(_cooldownCoroutine);
@@ -62,6 +70,10 @@ public class EffectApplicator : MonoBehaviour
         yield return new WaitForSeconds(duration);
         handler.RemoveEffect(effect);
         _activeEffects.Remove(tower);
+
+        // Revert color only when all effects have expired
+        if (_activeEffects.Count == 0)
+            _button.image.color = _defaultColor;
     }
 
     private TowerEffect CreateEffect() => _effectToApply switch

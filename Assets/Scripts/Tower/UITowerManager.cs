@@ -8,11 +8,13 @@ public class UITowerManager : MonoBehaviour
     [SerializeField] private Button _btnUpgrade;
     [SerializeField] private TextMeshProUGUI _textPrice;
     [SerializeField] private Button _btnRemove;
+    [SerializeField] private TextMeshProUGUI _textSellPrice; 
     [SerializeField] private Tower _tower;
     [SerializeField] private Transform _rightPos;
     [SerializeField] private Transform _leftPos;
 
     private int _price = 0;
+    private int _sellPrice = 0;
 
     private void Start()
     {
@@ -22,17 +24,19 @@ public class UITowerManager : MonoBehaviour
         _tower.OnUpgrade += UpdatePriceUI;
         LevelManager.Instance.OnCoinChange += CurrencyCheck;
 
-        UpdatePriceUI(); // Initialize price on start so _price isn't 0 on first upgrade
+        UpdatePriceUI();
     }
 
     void UpdatePriceUI()
     {
+        UpdateSellPrice();
+
         if (_tower.currentLevel != _tower.towerData.maxLevel)
         {
             _textLevelInfo.text = $"Lvl {_tower.currentLevel} -> Lvl {_tower.currentLevel + 1}";
             _price = _tower.towerData.GetTowerPrice(_tower.currentLevel);
             _textPrice.text = $"{_price}";
-            CurrencyCheck(); // Re-check affordability whenever price updates
+            CurrencyCheck();
         }
         else
         {
@@ -42,9 +46,15 @@ public class UITowerManager : MonoBehaviour
         }
     }
 
+    void UpdateSellPrice()
+    {
+        int lastPrice = _tower.towerData.GetTowerPrice(_tower.currentLevel > 0 ? _tower.currentLevel - 1 : 0);
+        _sellPrice = Mathf.FloorToInt(lastPrice * 0.75f);
+        _textSellPrice.text = $"Sell for {_sellPrice}";
+    }
+
     void CurrencyCheck()
     {
-        // Don't run affordability check if already at max level
         if (_tower.currentLevel >= _tower.towerData.maxLevel) return;
 
         if (LevelManager.Instance.coins >= _price)
@@ -61,7 +71,7 @@ public class UITowerManager : MonoBehaviour
 
     public void UpgradeTower()
     {
-        if (LevelManager.Instance.coins < _price) return; // Safety guard
+        if (LevelManager.Instance.coins < _price) return;
 
         IUpgradable upgradable = _tower.GetComponent<IUpgradable>();
         LevelManager.Instance.RemoveCoins(_price);
@@ -70,6 +80,7 @@ public class UITowerManager : MonoBehaviour
 
     public void DestroyTower()
     {
+        LevelManager.Instance.AddCoins(_sellPrice);
         TowersInScene.Instance.towers.Remove(_tower);
         Destroy(_tower.gameObject);
     }

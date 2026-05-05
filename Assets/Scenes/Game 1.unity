@@ -1227,7 +1227,7 @@ MonoBehaviour:
   _effectToApply: 1
   _effectMagnitude: 10
   _effectDuration: 3
-  _cooldownDuration: 30
+  _cooldownDuration: 20
   _button: {fileID: 837040594}
   _cooldownText: {fileID: 1519800638}
 --- !u!114 &837040594
@@ -2323,13 +2323,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   _enemyPool: {fileID: 1499427041}
   _spawnPoint: {fileID: 750861523}
-  _waves:
-  - enemyCount: 5
-    timeBetweenSpawns: 1
-    timeBetweenWaves: 2
-  - enemyCount: 10
-    timeBetweenSpawns: 0.6
-    timeBetweenWaves: 3
   _pathWaypoints:
   - {fileID: 780893195}
   - {fileID: 1091146402}

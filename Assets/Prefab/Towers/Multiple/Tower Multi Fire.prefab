@@ -1233,6 +1233,7 @@ MonoBehaviour:
   _btnUpgrade: {fileID: 2049177055774044971}
   _textPrice: {fileID: 2776214687350933991}
   _btnRemove: {fileID: 5174298731645542542}
+  _textSellPrice: {fileID: 1999249199315049659}
   _tower: {fileID: 8797146678704232055}
   _rightPos: {fileID: 6575080898157579460}
   _leftPos: {fileID: 6156790750663189335}
