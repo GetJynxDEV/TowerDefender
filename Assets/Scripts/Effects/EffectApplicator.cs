@@ -2,20 +2,27 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-// As a Button's OnClick Event
 public class EffectApplicator : MonoBehaviour
 {
     [SerializeField] private EffectToApply _effectToApply;
     [SerializeField] private float _effectMagnitude;
     [SerializeField] private float _effectDuration;
+    [SerializeField] private float _cooldownDuration;
     [SerializeField] private Button _button;
+    [SerializeField] private TextMeshProUGUI _cooldownText;
 
     private Dictionary<Tower, (Coroutine coroutine, TowerEffect effect)> _activeEffects = new();
+    private Coroutine _cooldownCoroutine;
 
     public void ApplyEffect()
     {
         _button.interactable = false;
+
+        if (_cooldownCoroutine != null)
+            StopCoroutine(_cooldownCoroutine);
+        _cooldownCoroutine = StartCoroutine(CooldownTimer());
 
         foreach (Tower tower in TowersInScene.Instance.towers)
         {
@@ -34,14 +41,27 @@ public class EffectApplicator : MonoBehaviour
         }
     }
 
+    private IEnumerator CooldownTimer()
+    {
+        float remaining = _cooldownDuration;
+
+        while (remaining > 0f)
+        {
+            _cooldownText.text = Mathf.CeilToInt(remaining).ToString();
+            remaining -= Time.deltaTime;
+            yield return null;
+        }
+
+        _cooldownText.text = string.Empty;
+        _button.interactable = true;
+        _cooldownCoroutine = null;
+    }
+
     private IEnumerator EffectTimer(Tower tower, EffectHandler handler, TowerEffect effect, float duration)
     {
         yield return new WaitForSeconds(duration);
         handler.RemoveEffect(effect);
         _activeEffects.Remove(tower);
-
-        if (_activeEffects.Count == 0)
-            _button.interactable = true;
     }
 
     private TowerEffect CreateEffect() => _effectToApply switch
