@@ -51,6 +51,7 @@ public abstract class Tower : MonoBehaviour, IUpgradable
     {
         isPlaced = true;
         TowersInScene.Instance.towers.Add(this);
+        LevelManager.Instance.RemoveCoins(towerData.cost[0]);
     }
 
 }

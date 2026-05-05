@@ -19,6 +19,7 @@ public class UITowerManager : MonoBehaviour
         _btnUpgradeButton.onClick.AddListener(UpgradeTower);
         _btnRemoveButton.onClick.AddListener(DestroyTower);
         _tower.OnUpgrade += UpdateUI;
+        LevelManager.Instance.OnCoinChange += UpdateUI;
     }
 
     void UpdateUI()
@@ -42,6 +43,7 @@ public class UITowerManager : MonoBehaviour
     public void UpgradeTower()
     {
         IUpgradable upgradable = _tower.GetComponent<IUpgradable>();
+        LevelManager.Instance.RemoveCoins(_tower.currentLevel);
         upgradable.Upgrade();
     }
 
