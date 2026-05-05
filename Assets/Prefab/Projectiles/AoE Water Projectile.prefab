@@ -4985,7 +4985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prj_AreaOfEffect
   rb: {fileID: 4705934889681078658}
-  speed: 5
+  speed: 10
   lifetime: 5
   element: 4
   damage: 0

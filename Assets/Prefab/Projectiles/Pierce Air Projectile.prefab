@@ -4976,7 +4976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prj_Pierce
   rb: {fileID: 4705934889681078658}
-  speed: 5
+  speed: 10
   lifetime: 5
   element: 2
   damage: 0
