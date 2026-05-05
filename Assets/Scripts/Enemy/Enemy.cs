@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
     public EnemyState currentState = EnemyState.Chase;
     public float deathIdleDuration = 0.6f;
     public float movementSpeed = 2f;
+    public int coinReward = 0; //NEW
 
     protected EnemyMovement movement;
     protected EnemyPool enemyPool;
@@ -51,6 +52,7 @@ public abstract class Enemy : MonoBehaviour
         if (currentState == EnemyState.Death || currentState == EnemyState.Victory) return;
         currentState = EnemyState.Death;
         if (movement != null) movement.StopMoving();
+        LevelManager.Instance.AddCoins(coinReward);
         StartCoroutine(DeathRoutine());
     }
 

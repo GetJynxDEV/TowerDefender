@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyDamageFlash : MonoBehaviour //NEW SCRIPT
+public class EnemyDamageFlash : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _flashDuration = 0.1f;
