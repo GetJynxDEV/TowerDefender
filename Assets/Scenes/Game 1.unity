@@ -1230,6 +1230,7 @@ MonoBehaviour:
   _cooldownDuration: 20
   _button: {fileID: 837040594}
   _cooldownText: {fileID: 1519800638}
+  _activeEffectColor: {r: 1, g: 0.11038631, b: 0, a: 1}
 --- !u!114 &837040594
 MonoBehaviour:
   m_ObjectHideFlags: 0
