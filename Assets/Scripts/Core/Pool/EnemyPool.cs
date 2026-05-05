@@ -12,6 +12,11 @@ public class EnemyPool : MonoBehaviour
     public bool CanSpawn => _activeCount < _maxActive;
     public bool AllCleared => _activeCount == 0;
 
+    public void IncreaseMaxActive(int amount)
+    {
+        _maxActive += amount;
+    }
+
     public GameObject Get(Vector3 position, Transform[] waypoints)
     {
         if (!CanSpawn) return null;

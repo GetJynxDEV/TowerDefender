@@ -557,10 +557,10 @@ MonoBehaviour:
   _spawnPoint: {fileID: 750861523}
   _waves:
   - enemyCount: 5
-    timeBetweenSpawns: 1
+    timeBetweenSpawns: 2
     timeBetweenWaves: 5
   - enemyCount: 10
-    timeBetweenSpawns: 0.6
+    timeBetweenSpawns: 1
     timeBetweenWaves: 10
   _pathWaypoints:
   - {fileID: 780893195}
