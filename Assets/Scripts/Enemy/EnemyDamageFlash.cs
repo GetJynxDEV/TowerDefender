@@ -19,11 +19,13 @@ public class EnemyDamageFlash : MonoBehaviour
 
     private void OnEnable()
     {
+        _spriteRenderer.color = _originalColor;
         _health.onHit += TriggerFlash;
     }
 
     private void OnDisable()
     {
+        if (_flashCoroutine != null) StopCoroutine(_flashCoroutine);
         _health.onHit -= TriggerFlash;
     }
 
