@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EnemyPool _enemyPool;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform[] _pathWaypoints;
+    [SerializeField] private TextMeshProUGUI _waveText;
 
     private const int _baseEnemyCount = 5;
     private const float _baseSpawnInterval = 2f;
@@ -30,11 +32,17 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(RunWaves());
     }
 
+    private void UpdateWaveText()
+    {
+        if (_waveText != null) _waveText.text = $"Wave {_currentWave}";
+    }
+
     private IEnumerator RunWaves()
     {
         while (true)
         {
             _currentWave++;
+            UpdateWaveText();
 
             if (_currentWave % 5 == 0)
             {
