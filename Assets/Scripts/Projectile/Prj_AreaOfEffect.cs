@@ -6,14 +6,16 @@ public class Prj_AreaOfEffect : Projectile
     [Header("AoE Settings")]
     [SerializeField] private float maxRadius = 2f;
     [SerializeField] private float aoeSpreadSpeed = 5f;
-    //private CircleCollider2D aoeCollider;
+    private CircleCollider2D aoeCollider;
     [SerializeField] private float baseRadius;
+
+    // Bug fix #2: guard flag to prevent multiple coroutine triggers
+    private bool isExploding = false;
 
     public override void Start()
     {
         base.Start();
-        //aoeCollider = GetComponent<CircleCollider2D>();
-        //baseRadius = aoeCollider.radius;
+        aoeCollider = GetComponent<CircleCollider2D>(); 
         transform.localScale = new Vector3(baseRadius, baseRadius, baseRadius);
     }
 
@@ -22,8 +24,15 @@ public class Prj_AreaOfEffect : Projectile
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(damage, element);
-            StartCoroutine(TriggerAoEEffect());
+
+            if (!isExploding)
+            {
+                isExploding = true;
+                StartCoroutine(TriggerAoEEffect());
+            }
         }
+
+        
     }
 
     IEnumerator TriggerAoEEffect()
@@ -34,21 +43,30 @@ public class Prj_AreaOfEffect : Projectile
 
         while (elapsed < spreadDuration)
         {
-            //aoeCollider.radius = Mathf.Lerp(baseRadius, maxRadius, elapsed / spreadDuration);
-            transform.localScale = Vector3.Lerp(new Vector3(baseRadius, baseRadius, baseRadius), new Vector3(maxRadius, maxRadius, maxRadius), elapsed / spreadDuration);
+            transform.localScale = Vector3.Lerp(
+                new Vector3(baseRadius, baseRadius, baseRadius),
+                new Vector3(maxRadius, maxRadius, maxRadius),
+                elapsed / spreadDuration
+            );
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         transform.localScale = new Vector3(maxRadius, maxRadius, maxRadius);
-        //aoeCollider.radius = maxRadius;
-        ReturnToPool();
+        StartCoroutine(ReturnToPoolAfterDelay());
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        isExploding = false; // Reset flag when pulled from pool
+        if (aoeCollider != null)
+            aoeCollider.enabled = true;
     }
 
     public override void OnDisable()
     {
         base.OnDisable();
         transform.localScale = new Vector3(baseRadius, baseRadius, baseRadius);
-        //aoeCollider.radius = baseRadius;
     }
 }

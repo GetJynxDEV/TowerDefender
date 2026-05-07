@@ -12,6 +12,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public event Action onHit;
     public event Action onDeath;
+    public event Action onEffectiveDamage;
 
     private void Start()
     {
@@ -32,6 +33,10 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(int damage, Element attackerElement)
     {
         ApplyDamage(DamageCalculator.ElementalDamage(elementType, attackerElement, damage));
+        if (DamageCalculator.IsEffective(elementType, attackerElement))
+        {
+            onEffectiveDamage?.Invoke();
+        }
     }
 
     private void ApplyDamage(int damage)

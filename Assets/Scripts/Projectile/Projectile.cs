@@ -14,6 +14,10 @@ public class Projectile : MonoBehaviour
 
     [Header("Pooling System")]
     public int poolID;
+    public float poolReturnDelay = 0.5f;
+
+    [Header("Visuals")]
+    public SpriteRenderer sprite;
 
 
     public virtual void Start()
@@ -23,6 +27,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnEnable()
     {
+        sprite.enabled = true;
         StartCoroutine(LifetimeCoroutine());
     }
 
@@ -44,9 +49,18 @@ public class Projectile : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
     }
 
+    public IEnumerator ReturnToPoolAfterDelay()
+    {
+        rb.linearVelocity = Vector2.zero;
+        sprite.enabled = false;
+        yield return new WaitForSeconds(poolReturnDelay);
+        ReturnToPool();
+    }
 
     public virtual void ReturnToPool()
     {
         ProjectilePool.Instance.Return(this.gameObject);
     }
+
+    
 }

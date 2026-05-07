@@ -33,4 +33,15 @@ public static class DamageCalculator
 
         return Mathf.RoundToInt(finalDamageValue);
     }
+
+    public static bool IsEffective(Element defenderElement, Element attackerElement)
+    {
+        if (defenderElement == Element.None || attackerElement == Element.None)
+            return false;
+        return (attackerElement == Element.Fire && defenderElement == Element.Earth) ||
+               (attackerElement == Element.Earth && defenderElement == Element.Air) ||
+               (attackerElement == Element.Air && defenderElement == Element.Lightning) ||
+               (attackerElement == Element.Lightning && defenderElement == Element.Water) ||
+               (attackerElement == Element.Water && defenderElement == Element.Fire);
+    }
 }

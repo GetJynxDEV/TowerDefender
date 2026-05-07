@@ -7,7 +7,7 @@ public class Prj_Basic : Projectile
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(damage, element);
-            ReturnToPool();
+            StartCoroutine(ReturnToPoolAfterDelay());
         }
     }
 }

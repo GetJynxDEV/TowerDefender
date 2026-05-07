@@ -4981,6 +4981,8 @@ MonoBehaviour:
   element: 2
   damage: 0
   poolID: 1
+  poolReturnDelay: 0.5
+  sprite: {fileID: 109200725657719514}
 --- !u!50 &4705934889681078658
 Rigidbody2D:
   serializedVersion: 5

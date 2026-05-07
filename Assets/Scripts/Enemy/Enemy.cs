@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public abstract class Enemy : MonoBehaviour
     public EnemyState currentState = EnemyState.Chase;
     public float deathIdleDuration = 0.6f;
     public float movementSpeed = 2f;
-    public int coinReward = 0; //NEW
+    public int coinReward = 0;
+
+    public Image imgElement;
+    public Sprite[] elementSprites;
 
     protected EnemyMovement movement;
     protected EnemyPool enemyPool;
@@ -44,7 +48,8 @@ public abstract class Enemy : MonoBehaviour
     {
         if (health == null) return;
         Element[] elements = (Element[])System.Enum.GetValues(typeof(Element));
-        health.elementType = elements[Random.Range(0, elements.Length)];
+        health.elementType = elements[Random.Range(0, elements.Length - 1)];
+        imgElement.sprite = elementSprites[(int)health.elementType];
     }
 
     protected void TriggerDeath()
