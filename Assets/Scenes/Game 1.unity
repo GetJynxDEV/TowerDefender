@@ -3080,7 +3080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   _coinsText: {fileID: 734601217}
-  coins: 200
+  coins: 10000
 --- !u!1 &1091146401
 GameObject:
   m_ObjectHideFlags: 0
