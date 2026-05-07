@@ -322,14 +322,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7526058278065579954}
   - component: {fileID: 473351683125829914}
-  - component: {fileID: 7632341381800885684}
+  - component: {fileID: 8797146678704232055}
   - component: {fileID: 2165073544605690694}
   - component: {fileID: 7673365425869151802}
   - component: {fileID: 4248830059391896416}
   - component: {fileID: 5303012311376400606}
   - component: {fileID: 7917880379732357446}
   m_Layer: 7
-  m_Name: Tower Basic Water
+  m_Name: Tower Tesla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7632341381800885684
+--- !u!114 &8797146678704232055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,10 +422,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6146188468239434443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542f50a33b2f8cb448f62da73d5d7106, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ab2318abcc6cad40915194933a7e831, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tower_SingleTarget
-  towerData: {fileID: 11400000, guid: a8a6c06caae7e5c4baf23c511ea999ee, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_MultiTarget
+  towerData: {fileID: 11400000, guid: af64558a4e0ae4246b6bc60585486c73, type: 2}
   currentLevel: 0
   stats:
     damage: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   building: {fileID: 5303012311376400606}
   canvasUpgradeOption: {fileID: 9206300330920456331}
   isPlaced: 0
+  _numOfTarget: 3
   _rangeAttack: {fileID: 2165073544605690694}
   _detector: {fileID: 8255528816290439428}
 --- !u!114 &2165073544605690694
@@ -449,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94fb976e38cfea4bb9251dfed1232b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeAttack
-  _projectilePrefab: {fileID: 7132174799696122355, guid: 092ce80c6e9e9e64e8dcfc5d1cdafe0a, type: 3}
+  _projectilePrefab: {fileID: 7132174799696122355, guid: 92061a7d9f25eb644a96cfbeb19c3185, type: 3}
   _firePoint: {fileID: 7526058278065579954}
 --- !u!61 &7673365425869151802
 BoxCollider2D:
@@ -1233,6 +1234,6 @@ MonoBehaviour:
   _textPrice: {fileID: 2776214687350933991}
   _btnRemove: {fileID: 5174298731645542542}
   _textSellPrice: {fileID: 1999249199315049659}
-  _tower: {fileID: 7632341381800885684}
+  _tower: {fileID: 8797146678704232055}
   _rightPos: {fileID: 6575080898157579460}
   _leftPos: {fileID: 6156790750663189335}

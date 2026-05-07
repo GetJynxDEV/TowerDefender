@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5303012311376400606}
   - component: {fileID: 7917880379732357446}
   m_Layer: 7
-  m_Name: Tower Basic Water
+  m_Name: Tower Wind Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542f50a33b2f8cb448f62da73d5d7106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_SingleTarget
-  towerData: {fileID: 11400000, guid: a8a6c06caae7e5c4baf23c511ea999ee, type: 2}
+  towerData: {fileID: 11400000, guid: 25852f409853bb24395ec578f694d000, type: 2}
   currentLevel: 0
   stats:
     damage: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94fb976e38cfea4bb9251dfed1232b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeAttack
-  _projectilePrefab: {fileID: 7132174799696122355, guid: 092ce80c6e9e9e64e8dcfc5d1cdafe0a, type: 3}
+  _projectilePrefab: {fileID: 7132174799696122355, guid: 186fe85e720c09145a146b443597cf9b, type: 3}
   _firePoint: {fileID: 7526058278065579954}
 --- !u!61 &7673365425869151802
 BoxCollider2D:

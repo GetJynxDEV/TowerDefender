@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8c349500bb7814b8f9ad12c4ffc310, type: 3}
+  m_Name: Tower_Boulder
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefinition
+  maxLevel: 5
+  cost: af0000004b0000007d000000af000000fa000000
+  statsPerLevel:
+  - damage: 3
+    attackSpeed: 0.5
+    critChance: 40
+    critDamage: 20
+  - damage: 5
+    attackSpeed: 0.6
+    critChance: 50
+    critDamage: 25
+  - damage: 7
+    attackSpeed: 0.6
+    critChance: 60
+    critDamage: 30
+  - damage: 9
+    attackSpeed: 0.7
+    critChance: 70
+    critDamage: 35
+  - damage: 11
+    attackSpeed: 0.8
+    critChance: 80
+    critDamage: 40
