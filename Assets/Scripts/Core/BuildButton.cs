@@ -38,4 +38,16 @@ public class BuildButton : MonoBehaviour
         }
     }
 
+    private void OnEnable()  // or Start(), wherever you subscribe
+    {
+        LevelManager.Instance.OnCoinChange += CurrencyCheck;
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe to prevent the event from firing on a dead object
+        if (LevelManager.Instance != null)
+            LevelManager.Instance.OnCoinChange -= CurrencyCheck;
+    }
+
 }

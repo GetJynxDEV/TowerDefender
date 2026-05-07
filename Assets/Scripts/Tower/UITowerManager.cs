@@ -92,4 +92,12 @@ public class UITowerManager : MonoBehaviour
         else
             gameObject.transform.position = _leftPos.transform.position;
     }
+
+    private void OnDestroy()
+    {
+        _tower.OnUpgrade -= UpdatePriceUI;
+
+        if (LevelManager.Instance != null)
+            LevelManager.Instance.OnCoinChange -= CurrencyCheck;
+    }
 }
