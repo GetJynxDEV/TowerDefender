@@ -25,6 +25,8 @@ public class EffectApplicator : MonoBehaviour
 
     public void ApplyEffect()
     {
+        if (TowersInScene.Instance.towers.Count == 0)
+            return;
         _button.interactable = false;
         _button.image.color = _activeEffectColor;
 
