@@ -1,3 +1,4 @@
+// EnemySpawner.cs
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -18,6 +19,11 @@ public class EnemySpawner : MonoBehaviour
     private float _spawnInterval;
     private float _waveInterval;
 
+    [Header("Enemy Scaling")]
+    public float healthMultiplier = 1.2f;
+
+    private float _currentHealthMultiplier = 1f;
+
     private void Start()
     {
         if (_spawnPoint == null)
@@ -28,7 +34,6 @@ public class EnemySpawner : MonoBehaviour
 
         _spawnInterval = _baseSpawnInterval;
         _waveInterval = _baseWaveInterval;
-
         StartCoroutine(RunWaves());
     }
 
@@ -39,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator RunWaves()
     {
-        while (true)
+        while (!LevelManager.Instance.isGameOver)
         {
             _currentWave++;
             UpdateWaveText();
@@ -49,18 +54,22 @@ public class EnemySpawner : MonoBehaviour
                 _enemyPool.IncreaseMaxActive(2);
                 _spawnInterval = Mathf.Max(_minInterval, _spawnInterval - 0.2f);
                 _waveInterval = Mathf.Max(_minInterval, _waveInterval - 0.2f);
+                _currentHealthMultiplier *= healthMultiplier;
             }
 
             int enemyCount = _baseEnemyCount + (_currentWave - 1);
 
             for (int i = 0; i < enemyCount; i++)
             {
-                yield return new WaitUntil(() => _enemyPool.CanSpawn);
-                _enemyPool.Get(_spawnPoint.position, _pathWaypoints);
+                if (LevelManager.Instance.isGameOver) yield break; 
+                yield return new WaitUntil(() => _enemyPool.CanSpawn || LevelManager.Instance.isGameOver);
+                if (LevelManager.Instance.isGameOver) yield break;
+                _enemyPool.Get(_spawnPoint.position, _pathWaypoints, _currentHealthMultiplier);
                 yield return new WaitForSeconds(_spawnInterval);
             }
 
-            yield return new WaitUntil(() => _enemyPool.AllCleared);
+            yield return new WaitUntil(() => _enemyPool.AllCleared || LevelManager.Instance.isGameOver);
+            if (LevelManager.Instance.isGameOver) yield break;
             yield return new WaitForSeconds(_waveInterval);
         }
     }

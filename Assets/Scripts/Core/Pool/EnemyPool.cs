@@ -1,3 +1,4 @@
+// EnemyPool.cs
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,35 +13,26 @@ public class EnemyPool : MonoBehaviour
     public bool CanSpawn => _activeCount < _maxActive;
     public bool AllCleared => _activeCount == 0;
 
-    public void IncreaseMaxActive(int amount)
-    {
-        _maxActive += amount;
-    }
+    public void IncreaseMaxActive(int amount) => _maxActive += amount;
 
-    public GameObject Get(Vector3 position, Transform[] waypoints)
+    public GameObject Get(Vector3 position, Transform[] waypoints, float healthMultiplier = 1f)
     {
         if (!CanSpawn) return null;
 
         GameObject enemy;
-
-        if (_pool.Count > 0)
-        {
-            enemy = _pool.Dequeue();
-        }
-        else
-        {
-            enemy = Instantiate(_enemyPrefab, transform);
-        }
+        if (_pool.Count > 0) enemy = _pool.Dequeue();
+        else enemy = Instantiate(_enemyPrefab, transform);
 
         enemy.transform.position = position;
         enemy.SetActive(true);
-        enemy.GetComponent<Enemy>().Init(waypoints);
+        enemy.GetComponent<Enemy>().Init(waypoints, healthMultiplier);
         _activeCount++;
         return enemy;
     }
 
     public void Return(GameObject enemy)
     {
+        if (!enemy.activeSelf) return;
         enemy.SetActive(false);
         _pool.Enqueue(enemy);
         _activeCount--;

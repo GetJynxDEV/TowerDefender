@@ -1,3 +1,4 @@
+// Enemy.cs
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,14 +24,10 @@ public abstract class Enemy : MonoBehaviour
         movement = GetComponent<EnemyMovement>();
         enemyPool = FindAnyObjectByType<EnemyPool>();
         health = GetComponent<Health>();
-
-        if (health != null)
-        {
-            health.onDeath += TriggerDeath;
-        }
+        if (health != null) health.onDeath += TriggerDeath;
     }
 
-    public virtual void Init(Transform[] waypoints)
+    public virtual void Init(Transform[] waypoints, float healthMultiplier = 1f)
     {
         if (movement == null) return;
 
@@ -38,7 +35,10 @@ public abstract class Enemy : MonoBehaviour
         movement.ResetMovement();
         movement.SetSpeed(movementSpeed);
         movement.waypoints = waypoints;
+
+        if (health != null) health.SetMaxHealth(healthMultiplier);
         health?.ResetHealth();
+
         AssignRandomElement();
     }
 
