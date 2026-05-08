@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 6146188468239434443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.47097, y: -0.7816, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -436,7 +436,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &4248830059391896416
 Rigidbody2D:
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fb631c9877eb442a64f55cb13923ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Building
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 8265510270587745848}
   boxCollider: {fileID: 7673365425869151802}
 --- !u!114 &7917880379732357446
 MonoBehaviour:
@@ -518,7 +518,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.6251, y: 3.6251, z: 3.6251}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7526058278065579954}
