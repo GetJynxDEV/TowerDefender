@@ -5,6 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     public void GameRestart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
